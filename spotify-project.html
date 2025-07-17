@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Popularity Analysis - Muhammad Zakkiy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-bold text-gray-800">Spotify Song Popularity Analysis</h1>
+            <p class="text-lg text-gray-600">A Deep Dive into the Attributes of Hit Songs</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10">
+
+        <section class="mb-12">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    The goal of this project was to analyze a dataset of over 114,000 Spotify songs to identify the key factors that contribute to a song's popularity. I explored the relationships between a song's audio features (like danceability and energy), its genre, and its artist to uncover what makes a song a hit.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Python</span>
+                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Pandas</span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Matplotlib</span>
+                    <span class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Seaborn</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8">Key Findings & Visualizations</h2>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Insight 1: Popularity is More Than Just Audio Features</h3>
+                <p class="text-gray-700 mb-4">
+                    At first glance, one might expect features like <strong>Danceability</strong> or <strong>Energy</strong> to strongly predict a song's success. However, the data tells a more nuanced story. While there are some expected relationships (e.g., a strong negative correlation between Energy and Acousticness), the most critical finding is that <strong>no single audio feature strongly correlates with Popularity.</strong>
+                </p>
+                <p class="text-gray-700 font-semibold mb-4">Key Observations from the Correlation Map:</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                    <li><strong>Popularity's Weak Link:</strong> Popularity has only a weak positive correlation with Danceability and Energy.</li>
+                    <li><strong>Expected Opposites:</strong> As anticipated, Energy and Acousticness are strongly negatively correlated.</li>
+                    <li><strong>The Bigger Picture:</strong> This suggests that while audio features define a song's sound, they are not the primary drivers of its popularity. Factors like <strong>artist recognition, genre trends, and marketing</strong> likely play a much more significant role.</li>
+                </ul>
+                <img src="spotify-project-photo/popularity_correlation.png" alt="Popularity Correlation Chart" class="w-full rounded-lg shadow-lg mt-4">
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Insight 2: Genre is a powerful predictor of mainstream success.</h3>
+                <p class="text-gray-700 mb-4">Based on the analysis of average popularity by track genre, a significant variation exists across different music genres on Spotify. Genres such as "pop-film," "k-pop," "chill," "sad," and "grunge" exhibit notably higher average popularity. Conversely, genres like "iranian," "romance," "latin," "detroit-techno," and "chicago-house" show considerably lower average popularity. This indicates that track genre is a strong factor influencing a song's potential popularity.</p>
+                <img src="spotify-project-photo/top_genres_popularity.png" alt="Top Genres by Popularity" class="w-full rounded-lg shadow-lg">
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Myth-Busting: What Doesn't Drive Popularity?</h3>
+                <p class="text-gray-700 mb-4">
+                    A key part of data analysis is not just finding what matters, but also confirming what doesn't. I investigated several common assumptions about what might make a song popular and found that many individual audio characteristics have a surprisingly minor impact. This reinforces the idea that a hit song is more than the sum of its parts.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800">Explicit Lyrics</h4>
+                        <p class="text-gray-600">Explicit songs show a slightly higher average popularity, but the difference is too small to be a major factor. A song's success isn't determined by its use of profanity.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800">Tempo (Pace)</h4>
+                        <p class="text-gray-600">Whether a song is categorized as Slow, Moderate, or Fast has no significant bearing on its popularity. High-tempo dance tracks are just as likely to be popular as slow ballads.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800">Loudness</h4>
+                        <p class="text-gray-600">While extremely quiet songs are less popular, once a track reaches a moderate or loud level, further increases in loudness do not correlate with higher popularity.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800">Musical Key (Mode)</h4>
+                        <p class="text-gray-600">Songs in a major key ("happy" sounding) are slightly more popular on average than those in a minor key ("sad" sounding), but the effect is minimal and not a reliable predictor of success.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center mt-12">
+            <a href="index.html" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition duration-300">
+                &larr; Back to Main Portfolio
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="bg-white mt-16">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-600">
+            <p>&copy; 2025 Muhammad Zakkiy. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
