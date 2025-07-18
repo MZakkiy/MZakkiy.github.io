@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Pneumonia Detection - Muhammad Zakkiy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-bold text-gray-800">Pneumonia Detection from Chest X-Rays</h1>
+            <p class="text-lg text-gray-600">A Deep Learning Case Study in Medical Image Analysis</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10">
+
+        <section class="mb-12">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    The goal of this project was to develop a reliable and accurate deep learning model capable of classifying chest X-ray images as either 'Normal' or indicative of 'Pneumonia'. Given the critical nature of medical diagnosis, the primary objective was to achieve high sensitivity (Recall) to minimize the number of missed pneumonia cases (false negatives), providing a valuable tool for radiologists.
+                </p>
+                 <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    The dataset used in this project is the <a href="https://www.kaggle.com/datasets/iamtanmayshukla/pneumonia-radiography-dataset/data" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Pneumonia Dataset with Chest X-Ray</a> dataset from Kaggle.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Python</span>
+                    <span class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">PyTorch</span>
+                    <span class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Scikit-learn</span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Pandas</span>
+                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Matplotlib</span>
+                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Seaborn</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8">From Data to Diagnosis: The Analysis</h2>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Insight 1: The Data's Story - Imbalance and Variety</h3>
+                <p class="text-gray-700 mb-4">
+                    A thorough exploration of the dataset revealed two critical challenges. First, a significant <strong>class imbalance:</strong>, with far more Pneumonia images than Normal ones. This could bias a naive model. Second, the images themselves were inconsistent in size and color format.
+                </p>
+                <p class="text-gray-700 font-semibold mb-4">Key Data Challenges:</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                    <li><strong>Class Imbalance:</strong> Required a special sampling strategy during training to ensure the model learned from both classes equally.</li>
+                    <li><strong>Inconsistent Inputs:</strong> Necessitated a robust preprocessing pipeline to resize all images to 224x224, convert them to 3-channel RGB for the ResNet50 model, and normalize pixel values.</li>
+                </ul>
+                <img src="pneumonia-project-photo/class_distribution.png" alt="Class Distribution Chart" class="w-full max-w-3xl mx-auto rounded-lg shadow-lg mt-4">
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Insight 2: Leveraging Transfer Learning for a Powerful Model</h3>
+                <p class="text-gray-700 mb-4">
+                    Instead of training a model from scratch, I used <strong>transfer learning</strong> with a ResNet50 model pre-trained on ImageNet. This approach leverages a powerful, pre-existing knowledge base of visual features. The final classifier layer was replaced and trained specifically on our X-ray data, making the training process highly efficient and effective.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Insight 3: High Sensitivity - A Reliable Diagnostic Aid</h3>
+                <p class="text-gray-700 mb-4">
+                    The final model was evaluated on a held-out test set. The results were highly successful, particularly in the most critical metric for this use case: <strong>Recall (Sensitivity)</strong>.
+                </p>
+                <p class="text-gray-700 font-semibold mb-4">Key Performance Metrics:</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                    <li><strong>Excellent Pneumonia Detection (93.6% Recall):</strong> The model correctly identified 235 out of 251 actual pneumonia cases, meaning it is very unlikely to miss a patient with the disease.</li>
+                    <li><strong>High Overall Accuracy (89.3%):</strong> The model was correct in its predictions nearly 90% of the time.</li>
+                    <li><strong>Low False Negatives:</strong> Only 16 pneumonia cases were missed. In a clinical setting, this low rate is highly desirable, making the model a reliable screening tool.</li>
+                </ul>
+                <img src="pneumonia-project-photo/confusion_matrix.png" alt="Confusion Matrix" class="w-full max-w-lg mx-auto rounded-lg shadow-lg mt-4">
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">Conclusion and Future Work</h3>
+                <p class="text-gray-700 mb-4">
+                    This project successfully demonstrates that a well-structured deep learning pipeline can produce a highly sensitive model for medical image analysis. The ResNet50 classifier serves as a powerful proof-of-concept for an AI-assisted diagnostic tool.
+                </p>
+                <p class="text-gray-700 font-semibold mb-4">Future Directions:</p>
+                 <ul class="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                    <li>Experiment with other CNN architectures like DenseNet or EfficientNet to potentially improve performance further.</li>
+                    <li>Deploy the model as a web application for real-time inference and demonstration.</li>
+                    <li>Incorporate model interpretability techniques (e.g., Grad-CAM) to visualize what parts of the X-ray the model focuses on, increasing trust and transparency.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="text-center mt-12">
+            <a href="index.html" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition duration-300">
+                &larr; Back to Main Portfolio
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="bg-white mt-16">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-600">
+            <p>&copy; 2025 Muhammad Zakkiy. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
