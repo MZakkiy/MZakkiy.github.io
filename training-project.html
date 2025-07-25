@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Performance Analysis - Muhammad Zakkiy</title>
+    <meta name="description" content="A hypothesis testing project to determine the impact of training on employee performance scores using Python and SciPy.">
+    <!-- <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" type="image/png"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl font-bold text-gray-800">Impact of Training on Employee Performance</h1>
+            <p class="text-lg text-gray-600">A Hypothesis Testing Case Study</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10">
+
+        <section class="mb-12">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Project Overview</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    This project investigates a critical business question: Does investing in employee training programs lead to a measurable improvement in performance? Using an independent samples t-test, I analyzed the performance scores of employees who attended training versus those who did not to determine if there was a statistically significant difference.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    The dataset used in this project is 
+                    <a href="https://raw.githubusercontent.com/amankharwal/Website-data/refs/heads/master/Employee_Training_and_Performance_Dataset.csv" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                        Employee Training and Performance Dataset
+                    </a> 
+                </p>
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Python</span>
+                    <span class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Pandas</span>
+                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">SciPy</span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Hypothesis Testing</span>
+                </div>
+                <a href="https://github.com/MZakkiy/hypothesis_testing_training_program" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-800 text-white font-bold py-2 px-4 rounded hover:bg-gray-700 transition duration-300">
+                    <i class="fab fa-github mr-2"></i> View Code on GitHub
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8">Analysis & Findings</h2>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">1. Hypothesis Formulation</h3>
+                <p class="text-gray-700 mb-4">To structure the analysis, I defined the following hypotheses:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong class="text-gray-900">Null Hypothesis ($H_0$):</strong> There is no significant difference in the mean performance scores between employees who attended training and those who did not.</li>
+                    <li><strong class="text-gray-900">Alternative Hypothesis ($H_1$):</strong> There is a significant difference in the mean performance scores between the two groups.</li>
+                </ul>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">2. Assumption Checks</h3>
+                <p class="text-gray-700 mb-4">Before performing the t-test, I validated two key assumptions:</p>
+                <ul class="list-disc list-outside space-y-2 text-gray-700 mt-4 ml-5 mb-4">
+                    <li>
+                        <strong>Normality:</strong> Using the Shapiro-Wilk test, the performance score for employees who attended training was normally distributed ($p$-value = 0.640), while the performance score for employees who did not attend training was not normally distributed ($p$-value = 0.041).
+                    </li>
+                    <li>
+                        <strong>Homogeneity of Variances:</strong> Levene's test resulted in a $p$-value of approximately 0.055, indicating we can assume equal variances.
+                    </li>
+                </ul>
+                <p class="text-gray-700 mb-4"> While this p-value is just above 0.05, it’s borderline. To be cautious, we assume unequal variances and use Welch’s t-test. Welch's t-test is a modified version of the t-test that does not assume equal variances and is also more robust to violations of the normality assumption than the standard independent samples t-test</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-semibold mb-3">3. Statistical Test Results</h3>
+                <p class="text-gray-700 mb-4">An independent samples t-test yielded the following results:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                    <li><strong>T-statistic:</strong> 9.188</li>
+                    <li><strong>P-value:</strong> $2.85 \times 10^{-19}$</li>
+                </ul>
+                <p class="text-gray-700 font-bold mb-4">This extremely low p-value (far below the standard significance level of 0.05) provides strong evidence against the null hypothesis.</p>
+                
+                <p class="text-gray-700 font-bold mb-2">Performance Score Distribution by Training Attendance</p>
+                <img src="hypothesis-testing-photo/boxplot_of_performance_score.png" alt="Box plot of performance scores" class="w-full max-w-2xl mx-auto rounded-lg shadow-lg mt-4">
+                <p class="text-center text-sm text-gray-500 mt-2">A box plot would visually confirm that the median performance score is higher for employees who attended training.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4">Conclusion & Business Impact</h2>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    The analysis confidently concludes that there is a <strong>statistically significant difference</strong> in performance scores. The positive t-statistic confirms that employees who attended training have, on average, higher performance scores.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                    <strong>Business Impact:</strong> This provides quantitative evidence that the company's training programs are effective and directly contribute to employee performance. It justifies the investment in these programs and supports proposals for future training initiatives.
+                </p>
+            </div>
+        </section>
+
+        <div class="text-center mt-12">
+            <a href="index.html" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition duration-300">
+                &larr; Back to Main Portfolio
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-white mt-16">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-600">
+            <p>&copy; 2025 Muhammad Zakkiy. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
